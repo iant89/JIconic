@@ -174,9 +174,13 @@ public class AutoCompletion extends PlainDocument {
     }
 
     private void setSelectedItem(Object item) {
-        selecting = true;
-        model.setSelectedItem(item);
-        selecting = false;
+        try {
+            selecting = true;
+            model.setSelectedItem(item);
+            selecting = false;
+        } catch (Exception e) {
+
+        }
     }
 
     private Object lookupItem(String pattern) {

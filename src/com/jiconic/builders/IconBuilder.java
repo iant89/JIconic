@@ -29,11 +29,12 @@ import com.jiconic.providers.IconProvider;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public interface IconBuilder {
 
     Icon buildIcon(IconProvider provider, String icon, IconProperties properties);
 
-    Image buildImage(IconProvider provider, String icon, IconProperties properties);
+    BufferedImage buildImage(IconProvider provider, String icon, IconProperties properties);
 
 }

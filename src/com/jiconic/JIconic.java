@@ -29,6 +29,7 @@ import com.jiconic.providers.IconProvider;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -120,6 +121,25 @@ public class JIconic {
     }
 
     /**
+     * Checks if a provider is currently registered
+     *
+     * @param name      The name of the provider to check
+     */
+    public static boolean hasProvider(String name) {
+        if(name == null || name.length() == 0) {
+            return false;
+        }
+
+        for (IconProvider iconProvider : providerList) {
+            if (iconProvider.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Gets the Icon Provider for the given icon
      *
      * @param icon      name of icon
@@ -139,15 +159,14 @@ public class JIconic {
         return null;
     }
 
-
     /**
-     * Creates a Image of the icon
+     * Creates a BufferedImage of the icon
      *
      * @param icon          name of icon
      * @param properties    icon properties
-     * @return              Image
+     * @return              BufferedImage
      */
-    public static Image buildImage(String icon, IconProperties properties) {
+    public static BufferedImage buildImage(String icon, IconProperties properties) {
         IconProvider provider = getProviderForIcon(icon);
 
         if(provider == null) {

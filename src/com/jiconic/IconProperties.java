@@ -33,6 +33,7 @@ public class IconProperties {
     private Color primaryColor = Color.BLACK;
     private Color secondaryColor = Color.WHITE;
 
+
     private int primaryOpacity = 100;
     private int secondaryOpacity = 100;
 

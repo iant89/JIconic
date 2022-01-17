@@ -53,7 +53,7 @@ public class FontAwesomeBuilder implements IconBuilder {
     }
 
     @Override
-    public Image buildImage(IconProvider provider, String icon, IconProperties properties) {
+    public BufferedImage buildImage(IconProvider provider, String icon, IconProperties properties) {
         return build(provider, icon, properties);
     }
 

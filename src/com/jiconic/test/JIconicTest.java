@@ -3,6 +3,7 @@ package com.jiconic.test;
 import com.jiconic.IconProperties;
 import com.jiconic.JIconic;
 import com.jiconic.icons.fontawesome.*;
+import com.jiconic.icons.materialdesign.*;
 import com.jiconic.providers.IconProvider;
 
 import javax.swing.*;
@@ -23,6 +24,11 @@ public class JIconicTest {
         JIconic.registerProvider(new FontAwesomeRegularProvider());
         JIconic.registerProvider(new FontAwesomeBrandProvider());
         JIconic.registerProvider(new FontAwesomeDuotoneProvider());
+        JIconic.registerProvider(new MaterialDesignRegularProvider());
+        JIconic.registerProvider(new MaterialDesignOutlinedProvider());
+        JIconic.registerProvider(new MaterialDesignSharpProvider());
+        JIconic.registerProvider(new MaterialDesignRoundProvider());
+        JIconic.registerProvider(new MaterialDesignTwoToneProvider());
 
 
         createTestWindow();
@@ -141,6 +147,10 @@ public class JIconicTest {
         iconField.addActionListener(e -> {
             if(JIconic.getProviderForIcon(((String)iconField.getSelectedItem())) != null) {
                 ImageIcon imageIcon = (ImageIcon) JIconic.buildIcon(((String)iconField.getSelectedItem()), iconProperties);
+
+                if(imageIcon == null) {
+                    return;
+                }
 
                 iconLabel.setIcon(imageIcon);
             } else {
