@@ -6,10 +6,10 @@ Do you need to use a icon font in your java application, and want customization?
 
 ## Supported Font Providers
 - Font Awesome PRO v5
+- Material Design
 
 ## Planned Providers
 - Font Awesome FREE
-- Material Design
 - Open Iconic
 
 ## Examples
