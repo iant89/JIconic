@@ -40,7 +40,7 @@ public class Loader {
 
 	static {
 		locations.add(new ClasspathLocation());
-		locations.add(new SystemLocation(new File(".")));
+		locations.add(new SystemLocation(new File("")));
 	}
 
 	/**

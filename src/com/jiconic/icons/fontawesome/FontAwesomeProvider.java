@@ -25,10 +25,15 @@ package com.jiconic.icons.fontawesome;
  */
 
 import com.jiconic.builders.IconBuilder;
+import com.jiconic.io.ClasspathLocation;
+import com.jiconic.io.Loader;
 import com.jiconic.providers.IconProvider;
 import com.jiconic.utils.UnicodeUtils;
 
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,14 +67,16 @@ public abstract class FontAwesomeProvider implements IconProvider {
     }
 
     private void loadIcons() {
-        FileReader fr = null;
+        InputStreamReader isr = null;
         BufferedReader br = null;
 
         iconMap = new HashMap<>();
 
+        URL datURL = Loader.getResource(datFile);
+
         try {
-            fr = new FileReader(datFile);
-            br = new BufferedReader(fr);
+            isr = new InputStreamReader(Loader.getResourceAsStream(datFile));
+            br = new BufferedReader(isr);
 
             String line = br.readLine();
 
@@ -105,8 +112,8 @@ public abstract class FontAwesomeProvider implements IconProvider {
                 if(br != null) {
                     br.close();
                 }
-                if(fr != null) {
-                    fr.close();
+                if(isr != null) {
+                    isr.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -116,19 +123,11 @@ public abstract class FontAwesomeProvider implements IconProvider {
 
     @Override
     public InputStream getResourceAsStream() {
-        String baseDirectory = new File(".").getAbsolutePath();
-        baseDirectory = baseDirectory.substring(0, baseDirectory.length() - 1);
+        InputStream inputStream = null;
+        inputStream = Loader.getResourceAsStream(ttfFile);
 
-        baseDirectory = baseDirectory + ttfFile;
-
-        try {
-            FileInputStream inputStream = new FileInputStream(baseDirectory);
-
-            if(inputStream != null) {
-                return inputStream;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if(inputStream != null) {
+            return inputStream;
         }
 
         return null;
