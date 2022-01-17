@@ -104,7 +104,7 @@ public class IconProperties {
         return secondaryOpacity;
     }
 
-    public void setPrimaryOpacity(int opacity) {
+    public IconProperties setPrimaryOpacity(int opacity) {
         if(opacity >= 100) {
             opacity = 100;
         } else if(opacity <= 0) {
@@ -112,9 +112,11 @@ public class IconProperties {
         }
 
         primaryOpacity = opacity;
+
+        return this;
     }
 
-    public void setSecondaryOpacity(int opacity) {
+    public IconProperties setSecondaryOpacity(int opacity) {
         if(opacity >= 100) {
             opacity = 100;
         } else if(opacity <= 0) {
@@ -122,6 +124,8 @@ public class IconProperties {
         }
 
         secondaryOpacity = opacity;
+
+        return this;
     }
 
     public boolean isOpaque() {
