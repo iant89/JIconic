@@ -197,7 +197,25 @@ public class FontAwesomeBuilder implements IconBuilder {
             g2.setTransform(rotationTransform);
         }
 
+
+        Composite originalComposite = null;
+
+        if(properties.getSecondaryOpacity() != 100) {
+            originalComposite = g2.getComposite();
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float)properties.getSecondaryOpacity() / 100.0f));
+        }
+
         secondLabel.print(g2);
+
+        if(originalComposite != null) {
+            g2.setComposite(originalComposite);
+        }
+
+        if(properties.getSecondaryOpacity() != 100) {
+            originalComposite = g2.getComposite();
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float)properties.getPrimaryOpacity() / 100.0f));
+        }
+
         firstLabel.print(g2);
 
         g2.dispose();
